@@ -143,9 +143,11 @@ public class calculate extends JFrame{
 }
 
 class Circle{
+	//設三個文字欄(半徑.面積.周長)
 	JTextField jtfRadius = new JTextField(10);
 	JTextField jtfCircleArea = new JTextField(10);
 	JTextField jtfCirclePerimeter = new JTextField(10);
+	//設兩個按鈕(計算.清除)
 	JButton jbtCaculate = new JButton("Calculate");
 	JButton jbtReset = new JButton("Reset");
 	
@@ -153,6 +155,7 @@ class Circle{
 	double circleArea;
 	double circlePerimeter;
 	
+	//設一個Panel，寫上Circle，放在frame的左邊
 	public Panel titleCircle(){
 		Panel titleCircle = new Panel(new FlowLayout(FlowLayout.LEFT));
 		titleCircle.setSize(100,100);
@@ -160,6 +163,7 @@ class Circle{
 		return titleCircle;
 	}
 	
+	//設一個Panel，放進半徑的文字欄以及兩個按鈕，依照順序填入Panel
 	public Panel setRadius(){
 		Panel setRadius = new Panel(new FlowLayout(FlowLayout.LEADING));
 		setRadius.setSize(200,100);
@@ -170,6 +174,7 @@ class Circle{
 		return setRadius;
 	}
 	
+	//設一個Panel，放進面積的文字欄
 	public Panel setCircleArea(){
 		Panel setCircleArea = new Panel(new FlowLayout(FlowLayout.LEADING));
 		setCircleArea.setSize(100,100);
@@ -178,6 +183,7 @@ class Circle{
 		return setCircleArea;
 	}
 	
+	//設一個Panel，放進周長的文字欄
 	public Panel setCirclePerimeter(){
 		Panel setCirclePerimeter = new Panel(new FlowLayout(FlowLayout.LEADING));
 		setCirclePerimeter.setSize(100,100);
@@ -188,11 +194,13 @@ class Circle{
 }
 
 class Triangle{
+	//設五個文字欄(三邊長.面積.周長)
 	JTextField jtfFirstLength = new JTextField(10);
 	JTextField jtfSecondLength = new JTextField(10);
 	JTextField jtfThirdLength = new JTextField(10);
 	JTextField jtfTriangleArea = new JTextField(10);
 	JTextField jtfTrianglePerimeter = new JTextField(10);
+	//設兩個按鈕(計算.清除)
 	JButton jbtCaculate1 = new JButton("Calculate");
 	JButton jbtReset1 = new JButton("Reset");
 	
@@ -202,6 +210,7 @@ class Triangle{
 	double triangleArea;
 	double trianglePerimeter;
 	
+	//設一個Panel，寫上Triangle，放在frame的左邊
 	public Panel titleTriangle(){
 		Panel titleTriangle = new Panel(new FlowLayout(FlowLayout.LEFT));
 		titleTriangle.setSize(100,100);
@@ -209,6 +218,7 @@ class Triangle{
 		return titleTriangle;
 	}
 	
+	//設一個Panel，放進第一個邊長的文字欄
 	public Panel setFirstLength(){
 		Panel setFirstLength = new Panel(new FlowLayout(FlowLayout.LEADING));
 		setFirstLength.setSize(200,100);
@@ -217,6 +227,7 @@ class Triangle{
 		return setFirstLength;
 	}
 	
+	//設一個Panel，放進第二個邊長的文字欄
 	public Panel setSecondLength(){
 		Panel setSecondLength = new Panel(new FlowLayout(FlowLayout.LEADING));
 		setSecondLength.setSize(100,100);
@@ -225,6 +236,7 @@ class Triangle{
 		return setSecondLength;
 	}
 	
+	//設一個Panel，放進第三個邊長的文字欄，以及兩個按鈕，依照順序填入Panel
 	public Panel setThirdLength(){
 		Panel setThirdLength = new Panel(new FlowLayout(FlowLayout.LEADING));
 		setThirdLength.setSize(100,100);
@@ -235,6 +247,7 @@ class Triangle{
 		return setThirdLength;
 	}
 	
+	//設一個Panel，放進面積的文字欄
 	public Panel getTriangleArea(){
 		Panel getTriangleArea = new Panel(new FlowLayout(FlowLayout.LEADING));
 		getTriangleArea.setSize(100,100);
@@ -243,6 +256,7 @@ class Triangle{
 		return getTriangleArea;
 	}
 	
+	//設一個Panel，放進周長的文字欄
 	public Panel getTrianglePerimeter(){
 		Panel getTrianglePerimeter = new Panel(new FlowLayout(FlowLayout.LEADING));
 		getTrianglePerimeter.setSize(100,100);
@@ -253,10 +267,12 @@ class Triangle{
 }
 
 class Square{
+	//設四個文字欄(長.寬.面積.周長)
 	JTextField jtfLength = new JTextField(10);
 	JTextField jtfWidth = new JTextField(10);
 	JTextField jtfSquareArea = new JTextField(10);
 	JTextField jtfSquarePerimeter = new JTextField(10);
+	//設兩個按鈕(計算.清除)
 	JButton jbtCaculate2 = new JButton("Calculate");
 	JButton jbtReset2 = new JButton("Reset");
 	
@@ -265,6 +281,7 @@ class Square{
 	int squareArea;
 	int squarePerimeter;
 	
+	//設一個Panel，寫上Square，放在frame的左邊
 	public Panel titleSquare(){
 		Panel titleSquare = new Panel(new FlowLayout(FlowLayout.LEFT));
 		titleSquare.setSize(100,100);
@@ -272,6 +289,7 @@ class Square{
 		return titleSquare;
 	}
 	
+	//設一個Panel，放進長的文字欄
 	public Panel setLength(){
 		Panel setLength = new Panel(new FlowLayout(FlowLayout.LEADING));
 		setLength.setSize(200,100);
@@ -280,6 +298,7 @@ class Square{
 		return setLength;
 	}
 	
+	//設一個Panel，放進寬的文字欄，以及兩個按鈕，依照順序填入Panel
 	public Panel setWidth(){
 		Panel setWidth = new Panel(new FlowLayout(FlowLayout.LEADING));
 		setWidth.setSize(200,100);
@@ -290,6 +309,7 @@ class Square{
 		return setWidth;
 	}
 	
+	//設一個Panel，放進面積的文字欄
 	public Panel getSquareArea(){
 		Panel getSquareArea = new Panel(new FlowLayout(FlowLayout.LEADING));
 		getSquareArea.setSize(100,100);
@@ -298,6 +318,7 @@ class Square{
 		return getSquareArea;
 	}
 	
+	//設一個Panel，放進周長的文字欄
 	public Panel getSquarePerimeter(){
 		Panel getSquarePerimeter = new Panel(new FlowLayout(FlowLayout.LEADING));
 		getSquarePerimeter.setSize(100,100);
