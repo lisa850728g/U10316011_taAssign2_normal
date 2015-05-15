@@ -4,20 +4,6 @@ import java.awt.event.*;
 import java.util.*;
 
 public class calculate extends JFrame{
-	JTextField jtfFirstLength = new JTextField(10);
-	JTextField jtfSecondLength = new JTextField(10);
-	JTextField jtfThirdLength = new JTextField(10);
-	JTextField jtfTriangleArea = new JTextField(10);
-	JTextField jtfTrianglePerimeter = new JTextField(10);
-	JButton jbtCaculate1 = new JButton("Calculate");
-	JButton jbtReset1 = new JButton("Reset");
-	
-	int firstLength;
-	int secondLength;
-	int thirdLength;
-	double triangleArea;
-	double trianglePerimeter;
-	
 	JTextField jtfLength = new JTextField(10);
 	JTextField jtfWidth = new JTextField(10);
 	JTextField jtfSquareArea = new JTextField(10);
@@ -59,68 +45,39 @@ public class calculate extends JFrame{
 			}
 		});
 		
-		Panel titleTriangle = new Panel(new FlowLayout(FlowLayout.LEFT));
-		titleTriangle.setSize(100,100);
-		titleTriangle.add(new JLabel("Triangle : "));
+		Triangle triangle = new Triangle();
 		
-		Panel setFirstLength = new Panel(new FlowLayout(FlowLayout.LEADING));
-		setFirstLength.setSize(200,100);
-		setFirstLength.add(new JLabel("First Length : "));
-		setFirstLength.add(jtfFirstLength);
+		add(triangle.titleTriangle());
+		add(triangle.setFirstLength());
+		add(triangle.setSecondLength());
+		add(triangle.setThirdLength());
+		add(triangle.getTriangleArea());
+		add(triangle.getTrianglePerimeter());
 		
-		Panel setSecondLength = new Panel(new FlowLayout(FlowLayout.LEADING));
-		setSecondLength.setSize(100,100);
-		setSecondLength.add(new JLabel("Second Length : "));
-		setSecondLength.add(jtfSecondLength);
-		
-		Panel setThirdLength = new Panel(new FlowLayout(FlowLayout.LEADING));
-		setThirdLength.setSize(100,100);
-		setThirdLength.add(new JLabel("Third Length : "));
-		setThirdLength.add(jtfThirdLength);
-		setThirdLength.add(jbtCaculate1);
-		setThirdLength.add(jbtReset1);
-		
-		Panel getTriangleArea = new Panel(new FlowLayout(FlowLayout.LEADING));
-		getTriangleArea.setSize(100,100);
-		getTriangleArea.add(new JLabel("The area is : "));
-		getTriangleArea.add(jtfTriangleArea);
-		
-		Panel getTrianglePerimeter = new Panel(new FlowLayout(FlowLayout.LEADING));
-		getTrianglePerimeter.setSize(100,100);
-		getTrianglePerimeter.add(new JLabel("The perimeter is : "));
-		getTrianglePerimeter.add(jtfTrianglePerimeter);
-		
-		add(titleTriangle);
-		add(setFirstLength);
-		add(setSecondLength);
-		add(setThirdLength);
-		add(getTriangleArea);
-		add(getTrianglePerimeter);
-		
-		jbtReset1.addActionListener(new ActionListener(){
+		triangle.jbtReset1.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				jtfFirstLength.setText("");
-				jtfSecondLength.setText("");
-				jtfThirdLength.setText("");
-				jtfTriangleArea.setText("");
-				jtfTrianglePerimeter.setText("");
+				triangle.jtfFirstLength.setText("");
+				triangle.jtfSecondLength.setText("");
+				triangle.jtfThirdLength.setText("");
+				triangle.jtfTriangleArea.setText("");
+				triangle.jtfTrianglePerimeter.setText("");
 			}
 		});
 		
-		jbtCaculate1.addActionListener(new ActionListener(){
+		triangle.jbtCaculate1.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				firstLength = Integer.parseInt(jtfFirstLength.getText());
-				secondLength = Integer.parseInt(jtfSecondLength.getText());
-				thirdLength = Integer.parseInt(jtfThirdLength.getText());
-				trianglePerimeter = firstLength + secondLength + thirdLength;
-				triangleArea = Math.pow(((trianglePerimeter/2) * (trianglePerimeter/2 - firstLength) * 
-							(trianglePerimeter/2 - secondLength) * (trianglePerimeter/2 - thirdLength)) , 0.5);
+				triangle.firstLength = Integer.parseInt(triangle.jtfFirstLength.getText());
+				triangle.secondLength = Integer.parseInt(triangle.jtfSecondLength.getText());
+				triangle.thirdLength = Integer.parseInt(triangle.jtfThirdLength.getText());
+				triangle.trianglePerimeter = triangle.firstLength + triangle.secondLength + triangle.thirdLength;
+				triangle.triangleArea = Math.pow(((triangle.trianglePerimeter/2) * (triangle.trianglePerimeter/2 - triangle.firstLength) * 
+							(triangle.trianglePerimeter/2 - triangle.secondLength) * (triangle.trianglePerimeter/2 - triangle.thirdLength)) , 0.5);
 				
 	
-				jtfTriangleArea.setText(String.format("%.2f" , triangleArea));
-				jtfTrianglePerimeter.setText(String.format("%.2f" , trianglePerimeter));
+				triangle.jtfTriangleArea.setText(String.format("%.2f" , triangle.triangleArea));
+				triangle.jtfTrianglePerimeter.setText(String.format("%.2f" , triangle.trianglePerimeter));
 			}
 		});
 		
@@ -232,5 +189,70 @@ class Circle{
 		setCirclePerimeter.add(new JLabel("The perimeter is : "));
 		setCirclePerimeter.add(jtfCirclePerimeter);
 		return setCirclePerimeter;
+	}
+}
+
+class Triangle{
+	JTextField jtfFirstLength = new JTextField(10);
+	JTextField jtfSecondLength = new JTextField(10);
+	JTextField jtfThirdLength = new JTextField(10);
+	JTextField jtfTriangleArea = new JTextField(10);
+	JTextField jtfTrianglePerimeter = new JTextField(10);
+	JButton jbtCaculate1 = new JButton("Calculate");
+	JButton jbtReset1 = new JButton("Reset");
+	
+	int firstLength;
+	int secondLength;
+	int thirdLength;
+	double triangleArea;
+	double trianglePerimeter;
+	
+	public Panel titleTriangle(){
+		Panel titleTriangle = new Panel(new FlowLayout(FlowLayout.LEFT));
+		titleTriangle.setSize(100,100);
+		titleTriangle.add(new JLabel("Triangle : "));
+		return titleTriangle;
+	}
+	
+	public Panel setFirstLength(){
+		Panel setFirstLength = new Panel(new FlowLayout(FlowLayout.LEADING));
+		setFirstLength.setSize(200,100);
+		setFirstLength.add(new JLabel("First Length : "));
+		setFirstLength.add(jtfFirstLength);
+		return setFirstLength;
+	}
+	
+	public Panel setSecondLength(){
+		Panel setSecondLength = new Panel(new FlowLayout(FlowLayout.LEADING));
+		setSecondLength.setSize(100,100);
+		setSecondLength.add(new JLabel("Second Length : "));
+		setSecondLength.add(jtfSecondLength);
+		return setSecondLength;
+	}
+	
+	public Panel setThirdLength(){
+		Panel setThirdLength = new Panel(new FlowLayout(FlowLayout.LEADING));
+		setThirdLength.setSize(100,100);
+		setThirdLength.add(new JLabel("Third Length : "));
+		setThirdLength.add(jtfThirdLength);
+		setThirdLength.add(jbtCaculate1);
+		setThirdLength.add(jbtReset1);
+		return setThirdLength;
+	}
+	
+	public Panel getTriangleArea(){
+		Panel getTriangleArea = new Panel(new FlowLayout(FlowLayout.LEADING));
+		getTriangleArea.setSize(100,100);
+		getTriangleArea.add(new JLabel("The area is : "));
+		getTriangleArea.add(jtfTriangleArea);
+		return getTriangleArea;
+	}
+	
+	public Panel getTrianglePerimeter(){
+		Panel getTrianglePerimeter = new Panel(new FlowLayout(FlowLayout.LEADING));
+		getTrianglePerimeter.setSize(100,100);
+		getTrianglePerimeter.add(new JLabel("The perimeter is : "));
+		getTrianglePerimeter.add(jtfTrianglePerimeter);
+		return getTrianglePerimeter;
 	}
 }
