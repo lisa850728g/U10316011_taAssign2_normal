@@ -1,7 +1,6 @@
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
-import java.util.*;
 
 /**此程式將用GUI介面計算三個幾何圖形的面積和周長
  * 分別是:圓形、三角形以及方形(四角皆為直角)
