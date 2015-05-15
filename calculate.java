@@ -4,16 +4,6 @@ import java.awt.event.*;
 import java.util.*;
 
 public class calculate extends JFrame{
-	JTextField jtfRadius = new JTextField(10);
-	JTextField jtfCircleArea = new JTextField(10);
-	JTextField jtfCirclePerimeter = new JTextField(10);
-	JButton jbtCaculate = new JButton("Calculate");
-	JButton jbtReset = new JButton("Reset");
-	
-	int radius;
-	double circleArea;
-	double circlePerimeter;
-	
 	JTextField jtfFirstLength = new JTextField(10);
 	JTextField jtfSecondLength = new JTextField(10);
 	JTextField jtfThirdLength = new JTextField(10);
@@ -41,50 +31,31 @@ public class calculate extends JFrame{
 	int squarePerimeter;
 	
 	calculate(){
-		Panel titleCircle = new Panel(new FlowLayout(FlowLayout.LEFT));
-		titleCircle.setSize(100,100);
-		titleCircle.add(new JLabel("Circle : "));
+		Circle circle = new Circle();
 		
-		Panel setRadius = new Panel(new FlowLayout(FlowLayout.LEADING));
-		setRadius.setSize(200,100);
-		setRadius.add(new JLabel("Radius : "));
-		setRadius.add(jtfRadius);
-		setRadius.add(jbtCaculate);
-		setRadius.add(jbtReset);
+		add(circle.titleCircle());
+		add(circle.setRadius());
+		add(circle.setCircleArea());
+		add(circle.setCirclePerimeter());
 		
-		Panel getCircleArea = new Panel(new FlowLayout(FlowLayout.LEADING));
-		getCircleArea.setSize(100,100);
-		getCircleArea.add(new JLabel("The area is : "));
-		getCircleArea.add(jtfCircleArea);
-		
-		Panel getCirclePerimeter = new Panel(new FlowLayout(FlowLayout.LEADING));
-		getCirclePerimeter.setSize(100,100);
-		getCirclePerimeter.add(new JLabel("The perimeter is : "));
-		getCirclePerimeter.add(jtfCirclePerimeter);
-		
-		add(titleCircle);
-		add(setRadius);
-		add(getCircleArea);
-		add(getCirclePerimeter);
-		
-		jbtReset.addActionListener(new ActionListener(){
+		circle.jbtReset.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				jtfRadius.setText("");
-				jtfCircleArea.setText("");
-				jtfCirclePerimeter.setText("");
+				circle.jtfRadius.setText("");
+				circle.jtfCircleArea.setText("");
+				circle.jtfCirclePerimeter.setText("");
 			}
 		});
 		
-		jbtCaculate.addActionListener(new ActionListener(){
+		circle.jbtCaculate.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				radius = Integer.parseInt(jtfRadius.getText());
-				circleArea = radius * radius * Math.PI;
-				circlePerimeter = 2 * radius * Math.PI;
+				circle.radius = Integer.parseInt(circle.jtfRadius.getText());
+				circle.circleArea = circle.radius * circle.radius * Math.PI;
+				circle.circlePerimeter = 2 * circle.radius * Math.PI;
 				
-				jtfCircleArea.setText(String.format("%.2f" , circleArea));
-				jtfCirclePerimeter.setText(String.format("%.2f" , circlePerimeter));
+				circle.jtfCircleArea.setText(String.format("%.2f" , circle.circleArea));
+				circle.jtfCirclePerimeter.setText(String.format("%.2f" , circle.circlePerimeter));
 			}
 		});
 		
@@ -216,5 +187,50 @@ public class calculate extends JFrame{
 		frame.setSize(400, 480);
 		frame.setVisible(true);
 		frame.setLayout(new GridLayout(15,1));
+	}
+}
+
+class Circle{
+	JTextField jtfRadius = new JTextField(10);
+	JTextField jtfCircleArea = new JTextField(10);
+	JTextField jtfCirclePerimeter = new JTextField(10);
+	JButton jbtCaculate = new JButton("Calculate");
+	JButton jbtReset = new JButton("Reset");
+	
+	int radius;
+	double circleArea;
+	double circlePerimeter;
+	
+	public Panel titleCircle(){
+		Panel titleCircle = new Panel(new FlowLayout(FlowLayout.LEFT));
+		titleCircle.setSize(100,100);
+		titleCircle.add(new JLabel("Circle : "));
+		return titleCircle;
+	}
+	
+	public Panel setRadius(){
+		Panel setRadius = new Panel(new FlowLayout(FlowLayout.LEADING));
+		setRadius.setSize(200,100);
+		setRadius.add(new JLabel("Radius : "));
+		setRadius.add(jtfRadius);
+		setRadius.add(jbtCaculate);
+		setRadius.add(jbtReset);
+		return setRadius;
+	}
+	
+	public Panel setCircleArea(){
+		Panel setCircleArea = new Panel(new FlowLayout(FlowLayout.LEADING));
+		setCircleArea.setSize(100,100);
+		setCircleArea.add(new JLabel("The area is : "));
+		setCircleArea.add(jtfCircleArea);
+		return setCircleArea;
+	}
+	
+	public Panel setCirclePerimeter(){
+		Panel setCirclePerimeter = new Panel(new FlowLayout(FlowLayout.LEADING));
+		setCirclePerimeter.setSize(100,100);
+		setCirclePerimeter.add(new JLabel("The perimeter is : "));
+		setCirclePerimeter.add(jtfCirclePerimeter);
+		return setCirclePerimeter;
 	}
 }
