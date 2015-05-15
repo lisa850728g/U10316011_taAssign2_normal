@@ -4,18 +4,6 @@ import java.awt.event.*;
 import java.util.*;
 
 public class calculate extends JFrame{
-	JTextField jtfLength = new JTextField(10);
-	JTextField jtfWidth = new JTextField(10);
-	JTextField jtfSquareArea = new JTextField(10);
-	JTextField jtfSquarePerimeter = new JTextField(10);
-	JButton jbtCaculate2 = new JButton("Calculate");
-	JButton jbtReset2 = new JButton("Reset");
-	
-	int length;
-	int width;
-	int squareArea;
-	int squarePerimeter;
-	
 	calculate(){
 		Circle circle = new Circle();
 		
@@ -81,67 +69,42 @@ public class calculate extends JFrame{
 			}
 		});
 		
-		Panel titleSquare = new Panel(new FlowLayout(FlowLayout.LEFT));
-		titleSquare.setSize(100,100);
-		titleSquare.add(new JLabel("Square : "));
+		Square square = new Square();
 		
-		Panel setLength = new Panel(new FlowLayout(FlowLayout.LEADING));
-		setLength.setSize(200,100);
-		setLength.add(new JLabel("Length : "));
-		setLength.add(jtfLength);
+		add(square.titleSquare());
+		add(square.setLength());
+		add(square.setWidth());
+		add(square.getSquareArea());
+		add(square.getSquarePerimeter());
 		
-		Panel setWidth = new Panel(new FlowLayout(FlowLayout.LEADING));
-		setWidth.setSize(200,100);
-		setWidth.add(new JLabel("Width : "));
-		setWidth.add(jtfWidth);
-		setWidth.add(jbtCaculate2);
-		setWidth.add(jbtReset2);
-		
-		Panel getSquareArea = new Panel(new FlowLayout(FlowLayout.LEADING));
-		getSquareArea.setSize(100,100);
-		getSquareArea.add(new JLabel("The area is : "));
-		getSquareArea.add(jtfSquareArea);
-		
-		Panel getSquarePerimeter = new Panel(new FlowLayout(FlowLayout.LEADING));
-		getSquarePerimeter.setSize(100,100);
-		getSquarePerimeter.add(new JLabel("The perimeter is : "));
-		getSquarePerimeter.add(jtfSquarePerimeter);
-		
-		add(titleSquare);
-		add(setLength);
-		add(setWidth);
-		add(getSquareArea);
-		add(getSquarePerimeter);
-		
-		jbtReset2.addActionListener(new ActionListener(){
+		square.jbtReset2.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				jtfLength.setText("");
-				jtfWidth.setText("");
-				jtfSquareArea.setText("");
-				jtfSquarePerimeter.setText("");
+				square.jtfLength.setText("");
+				square.jtfWidth.setText("");
+				square.jtfSquareArea.setText("");
+				square.jtfSquarePerimeter.setText("");
 			}
 		});
 		
-		jbtCaculate2.addActionListener(new ActionListener(){
+		square.jbtCaculate2.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				length = Integer.parseInt(jtfLength.getText());
-				width = Integer.parseInt(jtfWidth.getText());
-				squareArea = length * width;
-				squarePerimeter = ( length + width ) * 2 ;
+				square.length = Integer.parseInt(square.jtfLength.getText());
+				square.width = Integer.parseInt(square.jtfWidth.getText());
+				square.squareArea = square.length * square.width;
+				square.squarePerimeter = ( square.length + square.width ) * 2 ;
 				
-				jtfSquareArea.setText(String.format("%d" , squareArea));
-				jtfSquarePerimeter.setText(String.format("%d" , squarePerimeter));
+				square.jtfSquareArea.setText(String.format("%d" , square.squareArea));
+				square.jtfSquarePerimeter.setText(String.format("%d" , square.squarePerimeter));
 			}
 		});
 	}
 	public static void main(String[] args){
 		calculate frame = new calculate();
 		frame.setTitle("U10316011_GeoCalculate");
-		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(400, 480);
+		frame.setSize(400, 540);
 		frame.setVisible(true);
 		frame.setLayout(new GridLayout(15,1));
 	}
@@ -254,5 +217,60 @@ class Triangle{
 		getTrianglePerimeter.add(new JLabel("The perimeter is : "));
 		getTrianglePerimeter.add(jtfTrianglePerimeter);
 		return getTrianglePerimeter;
+	}
+}
+
+class Square{
+	JTextField jtfLength = new JTextField(10);
+	JTextField jtfWidth = new JTextField(10);
+	JTextField jtfSquareArea = new JTextField(10);
+	JTextField jtfSquarePerimeter = new JTextField(10);
+	JButton jbtCaculate2 = new JButton("Calculate");
+	JButton jbtReset2 = new JButton("Reset");
+	
+	int length;
+	int width;
+	int squareArea;
+	int squarePerimeter;
+	
+	public Panel titleSquare(){
+		Panel titleSquare = new Panel(new FlowLayout(FlowLayout.LEFT));
+		titleSquare.setSize(100,100);
+		titleSquare.add(new JLabel("Square : "));
+		return titleSquare;
+	}
+	
+	public Panel setLength(){
+		Panel setLength = new Panel(new FlowLayout(FlowLayout.LEADING));
+		setLength.setSize(200,100);
+		setLength.add(new JLabel("Length : "));
+		setLength.add(jtfLength);
+		return setLength;
+	}
+	
+	public Panel setWidth(){
+		Panel setWidth = new Panel(new FlowLayout(FlowLayout.LEADING));
+		setWidth.setSize(200,100);
+		setWidth.add(new JLabel("Width : "));
+		setWidth.add(jtfWidth);
+		setWidth.add(jbtCaculate2);
+		setWidth.add(jbtReset2);
+		return setWidth;
+	}
+	
+	public Panel getSquareArea(){
+		Panel getSquareArea = new Panel(new FlowLayout(FlowLayout.LEADING));
+		getSquareArea.setSize(100,100);
+		getSquareArea.add(new JLabel("The area is : "));
+		getSquareArea.add(jtfSquareArea);
+		return getSquareArea;
+	}
+	
+	public Panel getSquarePerimeter(){
+		Panel getSquarePerimeter = new Panel(new FlowLayout(FlowLayout.LEADING));
+		getSquarePerimeter.setSize(100,100);
+		getSquarePerimeter.add(new JLabel("The perimeter is : "));
+		getSquarePerimeter.add(jtfSquarePerimeter);
+		return getSquarePerimeter;
 	}
 }
