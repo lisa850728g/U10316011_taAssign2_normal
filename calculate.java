@@ -3,38 +3,55 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.util.*;
 
+/**此程式將用GUI介面計算三個幾何圖形的面積和周長
+ * 分別是:圓形、三角形以及方形(四角皆為直角)
+ * 而這三個幾何圖形都寫在不同的類別當中
+ * 再從main class 的constructor中呼叫
+ */
 public class calculate extends JFrame{
+	//Constructor
 	calculate(){
+		//new an object in Circle
 		Circle circle = new Circle();
 		
+		//call methods in Circle and add them into the frame
 		add(circle.titleCircle());
 		add(circle.setRadius());
 		add(circle.setCircleArea());
 		add(circle.setCirclePerimeter());
 		
+		//設定Reset Button的動作
 		circle.jbtReset.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
+				//清除JTextFields中的資料
 				circle.jtfRadius.setText("");
 				circle.jtfCircleArea.setText("");
 				circle.jtfCirclePerimeter.setText("");
 			}
 		});
 		
+		//設定Calculate Button的動作
 		circle.jbtCaculate.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
+				//拿使用者輸入的半徑
 				circle.radius = Integer.parseInt(circle.jtfRadius.getText());
+				//計算圓形的面積
 				circle.circleArea = circle.radius * circle.radius * Math.PI;
+				//計算圓形的周長
 				circle.circlePerimeter = 2 * circle.radius * Math.PI;
-				
+				//顯示圓形的面積
 				circle.jtfCircleArea.setText(String.format("%.2f" , circle.circleArea));
+				//顯示圓形的周長
 				circle.jtfCirclePerimeter.setText(String.format("%.2f" , circle.circlePerimeter));
 			}
 		});
 		
+		//new an object in Triangle
 		Triangle triangle = new Triangle();
 		
+		//call methods in Triangle and add them into the frame
 		add(triangle.titleTriangle());
 		add(triangle.setFirstLength());
 		add(triangle.setSecondLength());
@@ -42,9 +59,11 @@ public class calculate extends JFrame{
 		add(triangle.getTriangleArea());
 		add(triangle.getTrianglePerimeter());
 		
+		//設定Reset Button的動作
 		triangle.jbtReset1.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
+				//清除JTextFields中的資料
 				triangle.jtfFirstLength.setText("");
 				triangle.jtfSecondLength.setText("");
 				triangle.jtfThirdLength.setText("");
@@ -53,33 +72,41 @@ public class calculate extends JFrame{
 			}
 		});
 		
+		//設定Calculate Button的動作
 		triangle.jbtCaculate1.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
+				//拿使用者輸入的三個邊長
 				triangle.firstLength = Integer.parseInt(triangle.jtfFirstLength.getText());
 				triangle.secondLength = Integer.parseInt(triangle.jtfSecondLength.getText());
 				triangle.thirdLength = Integer.parseInt(triangle.jtfThirdLength.getText());
+				//計算三角形的周長
 				triangle.trianglePerimeter = triangle.firstLength + triangle.secondLength + triangle.thirdLength;
+				//計算三角形的面積
 				triangle.triangleArea = Math.pow(((triangle.trianglePerimeter/2) * (triangle.trianglePerimeter/2 - triangle.firstLength) * 
 							(triangle.trianglePerimeter/2 - triangle.secondLength) * (triangle.trianglePerimeter/2 - triangle.thirdLength)) , 0.5);
-				
-	
+				//顯示出三角形的面積
 				triangle.jtfTriangleArea.setText(String.format("%.2f" , triangle.triangleArea));
+				//顯示出三角形的周長
 				triangle.jtfTrianglePerimeter.setText(String.format("%.2f" , triangle.trianglePerimeter));
 			}
 		});
 		
+		//new an object in Square
 		Square square = new Square();
 		
+		//call methods in Square and add them into the frame
 		add(square.titleSquare());
 		add(square.setLength());
 		add(square.setWidth());
 		add(square.getSquareArea());
 		add(square.getSquarePerimeter());
 		
+		//設定Reset Button的動作
 		square.jbtReset2.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
+				//清除JTextFields中的資料
 				square.jtfLength.setText("");
 				square.jtfWidth.setText("");
 				square.jtfSquareArea.setText("");
@@ -87,26 +114,31 @@ public class calculate extends JFrame{
 			}
 		});
 		
+		//設定Calculate Button的動作
 		square.jbtCaculate2.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
+				//拿使用者輸入的長跟寬
 				square.length = Integer.parseInt(square.jtfLength.getText());
 				square.width = Integer.parseInt(square.jtfWidth.getText());
+				//計算方形的面積
 				square.squareArea = square.length * square.width;
+				//計算方形的周長
 				square.squarePerimeter = ( square.length + square.width ) * 2 ;
-				
+				//顯示出方形的面積
 				square.jtfSquareArea.setText(String.format("%d" , square.squareArea));
+				//顯示出方形的周長
 				square.jtfSquarePerimeter.setText(String.format("%d" , square.squarePerimeter));
 			}
 		});
 	}
 	public static void main(String[] args){
 		calculate frame = new calculate();
-		frame.setTitle("U10316011_GeoCalculate");
+		frame.setTitle("U10316011_GeoCalculate");//視窗名稱
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(400, 540);
 		frame.setVisible(true);
-		frame.setLayout(new GridLayout(15,1));
+		frame.setLayout(new GridLayout(15,1));//將frame分割成15列1行
 	}
 }
 
